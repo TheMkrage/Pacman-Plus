@@ -1,10 +1,12 @@
 package org.pacman.plus.gameobject;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class GameObject {
+public class GameObject extends JPanel{
 
 	private Rectangle rect;
 	private ImageIcon img;
@@ -46,6 +48,20 @@ public class GameObject {
 
 	public void move(int xRate, int yRate) {
 		rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width, rect.height);
+		update();
+	}
+	
+	public Rectangle getBounds() {
+		return rect;
+	}
+	
+	private void update() {
+		this.setBounds(rect);
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(img.getImage(), 0, 0, null);
 	}
 
 }
