@@ -33,9 +33,7 @@ public class GameObject {
 	}
 
 	public int getX() {
-
 		return rect.x;
-
 	}
 
 	public int getY() {
