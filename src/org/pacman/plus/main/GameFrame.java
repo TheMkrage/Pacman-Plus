@@ -12,7 +12,7 @@ public class GameFrame extends JFrame{
 		setTitle("Pacman-Plus");
 		setSize(800, 700);
 		setVisible(true);
-		GameObject obj = new GameObject(500, 500, "spaceBackground1.png");
+		GameObject obj = new GameObject(500, 500, "alien1.png");
 		add(obj);
 		gameLoop();
 	}
@@ -20,7 +20,6 @@ public class GameFrame extends JFrame{
 	private void gameLoop() {
 		while(true) {
 			repaint();
-			
 		}
 	}
 }
