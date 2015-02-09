@@ -51,6 +51,10 @@ public class GameObject extends JPanel{
 		update();
 	}
 	
+	public void stop() {
+		move(0,0);
+	}
+	
 	public Rectangle getBounds() {
 		return rect;
 	}

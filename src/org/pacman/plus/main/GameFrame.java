@@ -2,7 +2,9 @@ package org.pacman.plus.main;
 
 import javax.swing.JFrame;
 
+import org.pacman.plus.characters.specific.MainPacmanCharacter;
 import org.pacman.plus.gameobject.GameObject;
+import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
@@ -12,8 +14,11 @@ public class GameFrame extends JFrame{
 		setTitle("Pacman-Plus");
 		setSize(800, 700);
 		setVisible(true);
-		GameObject obj = new GameObject(500, 500, "alien1.png");
-		add(obj);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+		add(MainPacmanCharacter.getInstance());
+		addKeyListener(new BasicKeyListener());
 		gameLoop();
 	}
 	
