@@ -1,5 +1,6 @@
 package org.pacman.plus.characters.specific;
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -23,5 +24,11 @@ public class MainPacmanCharacter extends PacmanCharacter{
 		super(x, y, name);
 		System.out.println("ADDED");
 	}
-	
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		//if(this.isCollidingWithWall()){
+		//	this.stop();
+		//}
+	}
 }

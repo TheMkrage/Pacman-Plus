@@ -1,5 +1,7 @@
 package org.pacman.plus.characters;
 
+import java.awt.Graphics;
+
 import org.pacman.plus.gameobject.GameObject;
 import org.pacman.plus.main.GameFrame;
 
@@ -19,5 +21,8 @@ public class PacmanCharacter extends GameObject {
 			return true;
 		}
 		return false;
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 	}
 }

@@ -11,14 +11,8 @@ import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
-	public Rectangle rect = new Rectangle(0,0,0,0);
-	private static GameFrame instance;
-	public static GameFrame getInstance() {
-		if(instance == null)
-			instance = new GameFrame();
-		return instance;
-	}
-	private GameFrame() {
+	Rectangle rect = new Rectangle(0,0,0,0);
+	public GameFrame() {
 		//set up JFrame
 		super();
 		setTitle("Pacman-Plus");
