@@ -11,6 +11,8 @@ public class GameObject extends JPanel{
 
 	private Rectangle rect;
 	private ImageIcon img;
+	private int xRate = 0;
+	private int yRate = 0;
 
 	public GameObject(String name) {
 		rect = new Rectangle();
@@ -52,8 +54,14 @@ public class GameObject extends JPanel{
 		update();
 	}
 	
+	public void setContiniousMovement(int xRate, int yRate) {
+		this.xRate = xRate;
+		this.yRate = yRate;
+	}
+	
 	public void stop() {
 		move(0,0);
+		setContiniousMovement(0,0);
 	}
 	
 	public Rectangle getBounds() {
@@ -66,6 +74,7 @@ public class GameObject extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		move(xRate, yRate);
 		g.drawImage(img.getImage(), 0, 0, null);
 	}
 
