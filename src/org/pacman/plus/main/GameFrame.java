@@ -1,5 +1,8 @@
 package org.pacman.plus.main;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
 import javax.swing.JFrame;
 
 import org.pacman.plus.characters.specific.MainPacmanCharacter;
@@ -8,6 +11,7 @@ import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
+	Rectangle rect;
 	public GameFrame() {
 		//set up JFrame
 		super();
@@ -19,6 +23,9 @@ public class GameFrame extends JFrame{
 		
 		add(MainPacmanCharacter.getInstance());
 		addKeyListener(new BasicKeyListener());
+		
+		rect= new Rectangle(50, 50, 50, 50);
+		
 		gameLoop();
 	}
 	
@@ -26,5 +33,11 @@ public class GameFrame extends JFrame{
 		while(true) {
 			repaint();
 		}
+	}
+	
+	public void paint(Graphics g) {
+		super.paintComponents(g);
+		System.out.println("dfa");
+		g.drawRect(rect.x, rect.y, rect.width, rect.height);
 	}
 }
