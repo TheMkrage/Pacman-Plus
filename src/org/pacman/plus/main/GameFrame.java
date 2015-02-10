@@ -11,7 +11,7 @@ import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
-	Rectangle rect;
+	public Rectangle rect = new Rectangle(0,0,0,0);
 	private static GameFrame instance;
 	public static GameFrame getInstance() {
 		if(instance == null)
