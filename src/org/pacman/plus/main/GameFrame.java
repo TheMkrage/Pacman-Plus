@@ -37,7 +37,6 @@ public class GameFrame extends JFrame{
 	
 	public void paint(Graphics g) {
 		super.paintComponents(g);
-		System.out.println("dfa");
 		g.drawRect(rect.x, rect.y, rect.width, rect.height);
 	}
 }
