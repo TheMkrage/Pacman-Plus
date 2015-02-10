@@ -2,6 +2,7 @@ package org.pacman.plus.gameobject;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ public class GameObject extends JPanel{
 	public GameObject(String name) {
 		rect = new Rectangle();
 		rect.setLocation(0, 0);
-		java.net.URL imgUrl = getClass().getResource(name);
+		URL imgUrl = getClass().getResource(name);
 		img = new ImageIcon(imgUrl);
 	}
 
@@ -22,7 +23,7 @@ public class GameObject extends JPanel{
 		rect = new Rectangle();
 		rect.setLocation(x, y);
 
-		java.net.URL imgUrl = getClass().getResource(name);
+		URL imgUrl = getClass().getResource(name);
 		img = new ImageIcon(imgUrl);
 	}
 
