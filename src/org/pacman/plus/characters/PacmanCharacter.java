@@ -1,6 +1,7 @@
 package org.pacman.plus.characters;
 
 import org.pacman.plus.gameobject.GameObject;
+import org.pacman.plus.main.GameFrame;
 
 public class PacmanCharacter extends GameObject {
 
@@ -13,4 +14,9 @@ public class PacmanCharacter extends GameObject {
 		super(name); 
 	}
 
+	public boolean isCollidingWithWall() {
+		if(this.getBounds().intersects(GameFrame.getInstance().rect)) {
+			
+		}
+	}
 }
