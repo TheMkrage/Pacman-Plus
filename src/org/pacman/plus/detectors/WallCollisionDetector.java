@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import org.pacman.plus.gameobject.GameObject;
 import org.pacman.plus.gameobject.course.Wall;
 
-public class WallCollisionDetectors {
+public class WallCollisionDetector {
 
 	private ArrayList<Wall> walls;
-	
 
 }
