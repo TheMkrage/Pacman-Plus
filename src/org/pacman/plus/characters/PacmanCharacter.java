@@ -26,7 +26,7 @@ public class PacmanCharacter extends GameObject {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(isCollidingWithWall()) {
-			System.out.println("BABANGADNSFKJDSKAGNAKNFDKALSDFKVDSLGNGKLADRGs");
+			stop();
 		}
 	}
 }
