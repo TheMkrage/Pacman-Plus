@@ -2,6 +2,7 @@ package org.pacman.plus.characters;
 
 import java.awt.Graphics;
 
+import org.pacman.plus.detectors.WallCollisionDetector;
 import org.pacman.plus.gameobject.GameObject;
 import org.pacman.plus.main.GameFrame;
 
@@ -17,7 +18,7 @@ public class PacmanCharacter extends GameObject {
 	}
 
 	public boolean isCollidingWithWall() {
-		if(this.getBounds().intersects(rect.getBounds())) {
+		if(WallCollisionDetector.isBoundsTouchingWall(this.getBounds())) {
 			return true;
 		}
 		return false;
