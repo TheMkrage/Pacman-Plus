@@ -26,6 +26,7 @@ public class WallCollisionDetector {
 	}
 	
 	public static void addWall(Wall wall) {
+		System.out.println("ADDING WALL" + wall);
 		walls.add(wall);
 	}
 }
