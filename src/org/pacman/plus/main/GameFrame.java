@@ -7,11 +7,12 @@ import javax.swing.JFrame;
 
 import org.pacman.plus.characters.specific.MainPacmanCharacter;
 import org.pacman.plus.gameobject.GameObject;
+import org.pacman.plus.gameobject.course.Wall;
 import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
-	Rectangle rect = new Rectangle(0,0,0,0);
+	Wall rect = new Wall(0,0,0,0);
 	public GameFrame() {
 		//set up JFrame
 		super();
@@ -24,8 +25,8 @@ public class GameFrame extends JFrame{
 		add(MainPacmanCharacter.getInstance());
 		addKeyListener(new BasicKeyListener());
 		
-		rect= new Rectangle(50, 50, 50, 50);
-		
+		rect= new Wall(50, 50, 50, 50);
+		add(rect);
 		gameLoop();
 	}
 	
@@ -37,6 +38,5 @@ public class GameFrame extends JFrame{
 	
 	public void paint(Graphics g) {
 		super.paintComponents(g);
-		g.drawRect(rect.x, rect.y, rect.width, rect.height);
 	}
 }
