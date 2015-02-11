@@ -28,6 +28,17 @@ public class GameObject extends JPanel{
 		URL imgUrl = getClass().getResource(name);
 		img = new ImageIcon(imgUrl);
 	}
+	public GameObject(int x, int y, int width, int height, String name) {
+		rect = new Rectangle();
+		rect.setBounds(x, y, width, height);
+
+		URL imgUrl = getClass().getResource(name);
+		img = new ImageIcon(imgUrl);
+	}
+	public GameObject(int x, int y, int width, int height) {
+		rect = new Rectangle();
+		rect.setBounds(x, y, width, height);
+	}
 
 	public int getWidth() {
 		return img.getIconWidth();
@@ -75,7 +86,12 @@ public class GameObject extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		move(xRate, yRate);
-		g.drawImage(img.getImage(), 0, 0, null);
+		//if there is no image
+		if(img.getImage() != null) {
+			g.drawImage(img.getImage(), 0, 0, null);
+		}else { //draw the rect if no image
+			g.drawRect(rect.x, rect.y, rect.width, rect.height);
+		}
 	}
 
 }
