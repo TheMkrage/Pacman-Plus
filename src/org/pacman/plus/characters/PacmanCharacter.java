@@ -18,7 +18,7 @@ public class PacmanCharacter extends GameObject {
 	}
 
 	public boolean isCollidingWithWall() {
-		if(WallCollisionDetector.isBoundsTouchingWall(this.getBounds())) {
+		if(WallCollisionDetector.isBoundsTouchingWall(getBounds())) {
 			return true;
 		}
 		return false;

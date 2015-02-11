@@ -14,11 +14,11 @@ public class WallCollisionDetector {
 	public static boolean isBoundsTouchingWall(Rectangle bounds) {
 		boolean isTouching = false;
 		if(walls.isEmpty()) {
-			System.out.println("ITS EMPTY!");
 			return false;
 		}
 		for(Wall w: walls) {
 			if(bounds.intersects(w.getBounds())) {
+				System.out.println("TRUE BABY");
 				isTouching = true;
 			}
 		}
@@ -26,7 +26,6 @@ public class WallCollisionDetector {
 	}
 	
 	public static void addWall(Wall wall) {
-		System.out.println("ADDING WALL" + wall);
 		walls.add(wall);
 	}
 }

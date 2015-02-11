@@ -17,16 +17,20 @@ public class GameObject extends JPanel {
 	public GameObject(String name) {
 		rect = new Rectangle();
 		rect.setLocation(0, 0);
+		
 		URL imgUrl = getClass().getResource(name);
 		img = new ImageIcon(imgUrl);
+		rect.setSize(img.getIconWidth(), img.getIconHeight());
 	}
 
 	public GameObject(int x, int y, String name) {
 		rect = new Rectangle();
 		rect.setLocation(x, y);
+		
 
 		URL imgUrl = getClass().getResource(name);
 		img = new ImageIcon(imgUrl);
+		rect.setSize(img.getIconWidth(), img.getIconHeight());
 	}
 
 	public GameObject(int x, int y, int width, int height, String name) {
@@ -39,24 +43,20 @@ public class GameObject extends JPanel {
 
 	public GameObject(int x, int y, int width, int height) {
 		rect = new Rectangle();
-		rect.setLocation(x, y);
+		setLocation(x, y);
 		rect.setSize(width, height);
 	}
 
 	public int getWidth() {
-		if (hasImage()) {
-			return img.getIconWidth();
-		} else {
+		
 			return rect.width;
-		}
+		
 	}
 
 	public int getHeight() {
-		if (hasImage()) {
-			return img.getIconHeight();
-		} else {
+		
 			return rect.height;
-		}
+		
 	}
 
 	public int getX() {
@@ -86,12 +86,8 @@ public class GameObject extends JPanel {
 		setContiniousMovement(0, 0);
 	}
 
-	public Rectangle getBounds() {
-		return rect;
-	}
-
 	private void update() {
-		this.setBounds(rect);
+		setBounds(rect);
 	}
 
 	public boolean hasImage() {
@@ -109,7 +105,7 @@ public class GameObject extends JPanel {
 		if (hasImage()) {
 			g.drawImage(img.getImage(), 0, 0, null);
 		} else { // draw the rect if no image
-			g.drawRect(0,0,rect.width,rect.height);
+			g.drawRect(0, 0, rect.width, rect.height);
 		}
 	}
 
