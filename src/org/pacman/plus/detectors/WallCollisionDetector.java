@@ -9,10 +9,14 @@ import org.pacman.plus.gameobject.course.Wall;
 
 public class WallCollisionDetector {
 
-	private static ArrayList<Wall> walls;
+	private static ArrayList<Wall> walls = new ArrayList<Wall>();
 
 	public static boolean isBoundsTouchingWall(Rectangle bounds) {
 		boolean isTouching = false;
+		if(walls.isEmpty()) {
+			System.out.println("ITS EMPTY!");
+			return false;
+		}
 		for(Wall w: walls) {
 			if(bounds.intersects(w.getBounds())) {
 				isTouching = true;

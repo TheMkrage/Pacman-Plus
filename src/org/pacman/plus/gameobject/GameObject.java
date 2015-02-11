@@ -39,7 +39,8 @@ public class GameObject extends JPanel {
 
 	public GameObject(int x, int y, int width, int height) {
 		rect = new Rectangle();
-		rect.setBounds(x, y, width, height);
+		rect.setLocation(x, y);
+		rect.setSize(width, height);
 	}
 
 	public int getWidth() {
@@ -102,13 +103,13 @@ public class GameObject extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		update();
 		move(xRate, yRate);
 		// if there is no image
-		if (!hasImage()) {
+		if (hasImage()) {
 			g.drawImage(img.getImage(), 0, 0, null);
 		} else { // draw the rect if no image
-			System.out.println("RECTANGLE FUN");
-			g.drawRect(rect.x, rect.y, rect.width, rect.height);
+			g.drawRect(0,0,rect.width,rect.height);
 		}
 	}
 

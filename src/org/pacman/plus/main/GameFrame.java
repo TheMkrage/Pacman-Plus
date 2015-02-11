@@ -12,7 +12,7 @@ import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
-	Wall rect = new Wall(0,0,0,0);
+	Wall rect;
 	public GameFrame() {
 		//set up JFrame
 		super();
