@@ -28,6 +28,8 @@ public class PacmanCharacter extends GameObject {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (isCollidingWithWall()) {
+			//moves back once, then stops
+			move((int)-this.getLastDirection().getWidth(), (int)-this.getLastDirection().getHeight());
 			stop();
 		}
 	}

@@ -106,8 +106,6 @@ public class GameObject extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		update();
-		if(hasImage())
-		System.out.println(lastDirection);
 		move(xRate, yRate);
 		// if there is no image
 		if (hasImage()) {
@@ -115,6 +113,14 @@ public class GameObject extends JPanel {
 		} else { // draw the rect if no image
 			g.drawRect(0, 0, rect.width - 5, rect.height - 5);
 		}
+	}
+
+	public Dimension getLastDirection() {
+		return lastDirection;
+	}
+
+	public void setLastDirection(Dimension lastDirection) {
+		this.lastDirection = lastDirection;
 	}
 
 }
