@@ -1,5 +1,6 @@
 package org.pacman.plus.gameobject;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.net.URL;
@@ -13,7 +14,9 @@ public class GameObject extends JPanel {
 	private ImageIcon img;
 	private int xRate = 0;
 	private int yRate = 0;
-
+	//the last direction the pacman was going
+	private Dimension lastDirection = new Dimension(0 ,0);
+	
 	public GameObject(String name) {
 		rect = new Rectangle();
 		rect.setLocation(0, 0);
@@ -87,6 +90,11 @@ public class GameObject extends JPanel {
 
 	private void update() {
 		setBounds(rect);
+		if(xRate != 0) {
+			lastDirection = new Dimension(xRate, 0);
+		}else if( yRate != 0) {
+			lastDirection = new Dimension(0, yRate);
+		}
 	}
 
 	public boolean hasImage() {

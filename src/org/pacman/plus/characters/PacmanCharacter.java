@@ -8,7 +8,7 @@ import org.pacman.plus.main.GameFrame;
 
 public class PacmanCharacter extends GameObject {
 
-	private int lastDirection = 0;
+	
 	public PacmanCharacter(int x, int y, String name) {
 		super(x, y, name);
 		// TODO Auto-generated constructor stub
