@@ -12,7 +12,6 @@ import org.pacman.plus.keylisteners.BasicKeyListener;
 
 public class GameFrame extends JFrame{
 
-	Wall rect;
 	public GameFrame() {
 		//set up JFrame
 		super();
@@ -25,8 +24,9 @@ public class GameFrame extends JFrame{
 		add(MainPacmanCharacter.getInstance());
 		addKeyListener(new BasicKeyListener());
 		
-		rect= new Wall(50, 50, 50, 50);
-		add(rect);
+		//leaves 200 - 800 for game
+		Wall barrier = new Wall(185, 0, 15, 665);
+		add(barrier);
 		gameLoop();
 	}
 	
