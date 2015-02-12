@@ -22,10 +22,15 @@ public class GameFrame extends JFrame{
 		
 		
 		add(MainPacmanCharacter.getInstance());
+		
+		GameObject Background = new GameObject(200, 0, "GameBackground.png");
+		add(Background);
+		
+		
 		addKeyListener(new BasicKeyListener());
 		
 		//leaves 200 - 800 for game
-		Wall barrier = new Wall(185, 0, 15, 665);
+		Wall barrier = new Wall(186, 0, 15, 665);
 		add(barrier);
 		gameLoop();
 	}
