@@ -22,16 +22,26 @@ public class GameFrame extends JFrame {
 
 		add(MainPacmanCharacter.getInstance());
 
+		
+		Wall barrier = new Wall(186, 0, 15, 665);
+		add(barrier);
+		
+		
+		Wall centerBottom = new Wall(465, 380, 20, 20);
+		add(centerBottom);
+		
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");
 		add(Background);
 
 		addKeyListener(new BasicKeyListener());
 
 		// leaves 200 - 800 for game
-		Wall barrier = new Wall(186, 0, 15, 665);
-		add(barrier);
+		
+	
 		gameLoop();
 	}
+	
+	
 
 	private void gameLoop() {
 		while (true) {
@@ -43,4 +53,5 @@ public class GameFrame extends JFrame {
 		super.paintComponents(g);
 		//.drawImage(MainPacmanCharacter.getInstance().getImage().getImage(), 0, 0, null);
 	}
+	
 }
