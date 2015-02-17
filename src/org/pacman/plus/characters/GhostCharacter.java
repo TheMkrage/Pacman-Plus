@@ -1,5 +1,11 @@
 package org.pacman.plus.characters;
 
-public class GhostCharacter {
+import org.pacman.plus.gameobject.GameObject;
+
+public class GhostCharacter extends GameObject{
+
+	public GhostCharacter(int x, int y, String name) {
+		super(x, y, name);
+	}
 
 }
