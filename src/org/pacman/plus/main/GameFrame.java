@@ -22,32 +22,30 @@ public class GameFrame extends JFrame {
 
 		add(MainPacmanCharacter.getInstance());
 
-
 		Wall topBorder = new Wall(186, 0, 597, 15);
-		add( topBorder);
-		
+		add(topBorder);
+
 		Wall rightBorder = new Wall(768, 0, 15, 665);
 		add(rightBorder);
-		
-		Wall barrier = new Wall(186, 0, 15, 665);
-		add(barrier);
-		
-		
+
+		Wall leftBorder = new Wall(186, 0, 15, 665);
+		add(leftBorder);
+
+		Wall bottomBorder = new Wall(186, 647, 597, 15);
+		add(bottomBorder);
+
 		Wall centerMidBottom = new Wall(465, 390, 200, 20);
 		add(centerMidBottom);
-		
+
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");
 		add(Background);
 
 		addKeyListener(new BasicKeyListener());
 
 		// leaves 200 - 800 for game
-		
-	
+
 		gameLoop();
 	}
-	
-	
 
 	private void gameLoop() {
 		while (true) {
@@ -57,7 +55,8 @@ public class GameFrame extends JFrame {
 
 	public void paint(Graphics g) {
 		super.paintComponents(g);
-		//.drawImage(MainPacmanCharacter.getInstance().getImage().getImage(), 0, 0, null);
+		// .drawImage(MainPacmanCharacter.getInstance().getImage().getImage(),
+		// 0, 0, null);
 	}
-	
+
 }
