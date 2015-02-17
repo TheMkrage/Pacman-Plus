@@ -111,7 +111,7 @@ public class GameObject extends JPanel {
 		if (hasImage()) {
 			g.drawImage(img.getImage(), 0, 0, null);
 		} else { // draw the rect if no image
-			g.drawRect(0, 0, rect.width - 5, rect.height - 5);
+			g.drawRect(0, 0, rect.width - 1, rect.height - 1);
 		}
 	}
 

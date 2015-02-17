@@ -22,13 +22,19 @@ public class GameFrame extends JFrame {
 
 		add(MainPacmanCharacter.getInstance());
 
+
+		Wall topBorder = new Wall(186, 0, 597, 15);
+		add( topBorder);
+		
+		Wall rightBorder = new Wall(768, 0, 15, 665);
+		add(rightBorder);
 		
 		Wall barrier = new Wall(186, 0, 15, 665);
 		add(barrier);
 		
 		
-		Wall centerBottom = new Wall(465, 380, 20, 20);
-		add(centerBottom);
+		Wall centerMidBottom = new Wall(465, 390, 200, 20);
+		add(centerMidBottom);
 		
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");
 		add(Background);
