@@ -1,5 +1,7 @@
 package org.pacman.plus.characters.ghosts;
 
-public abstract class GhostAPI {
+import java.awt.Dimension;
 
+public abstract class GhostAPI {
+	public abstract Dimension getTarget();
 }
