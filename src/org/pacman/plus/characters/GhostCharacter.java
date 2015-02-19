@@ -26,13 +26,13 @@ public class GhostCharacter extends GameObject{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setPoint = api.getTarget();
+		Dimension movingDirection = getDirectionToSetPoint();
 		
 		if (isCollidingWithWall()) {
 			//moves back once, then stops
-			move((int)-this.getLastDirection().getWidth(), (int)-this.getLastDirection().getHeight());
-			stop();
+			move((int)-movingDirection.width, (int)-movingDirection.height);
+			
 		}else {
-			Dimension movingDirection = getDirectionToSetPoint();
 			this.move(movingDirection.width, movingDirection.height);
 		}
 	}

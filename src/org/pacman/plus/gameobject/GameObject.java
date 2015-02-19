@@ -76,6 +76,7 @@ public class GameObject extends JPanel {
 	}
 
 	public void move(int xRate, int yRate) {
+		//setLastDirection(xRate, yRate);
 		rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width, rect.height);
 	}
 
@@ -125,6 +126,9 @@ public class GameObject extends JPanel {
 		this.lastDirection = lastDirection;
 	}
 
+	public void setLastDirection(int x, int y) {
+		this.lastDirection = new Dimension(x, y);
+	}
 	public boolean isCollidingWithWall() {
 		if (WallCollisionDetector.isBoundsTouchingWall(getBounds())) {
 			return true;
