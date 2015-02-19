@@ -25,6 +25,7 @@ public class GhostCharacter extends GameObject{
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		setPoint = api.getTarget();
 		Dimension movingDirection = getDirectionToSetPoint();
 		this.move(movingDirection.width, movingDirection.height);
 	}

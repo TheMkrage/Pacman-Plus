@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 
+import org.pacman.plus.characters.GhostCharacter;
+import org.pacman.plus.characters.ghosts.apis.SimpleAPI;
 import org.pacman.plus.characters.specific.MainPacmanCharacter;
 import org.pacman.plus.gameobject.GameObject;
 import org.pacman.plus.gameobject.course.Wall;
@@ -21,7 +23,10 @@ public class GameFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		add(MainPacmanCharacter.getInstance());
+		GhostCharacter test = new GhostCharacter(600, 200, "redGhost.png", new SimpleAPI());
 
+		add(test);
+		
 		Wall topBorder = new Wall(186, 0, 597, 15);
 		add(topBorder);
 
