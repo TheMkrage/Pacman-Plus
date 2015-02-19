@@ -26,8 +26,15 @@ public class GhostCharacter extends GameObject{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		setPoint = api.getTarget();
-		Dimension movingDirection = getDirectionToSetPoint();
-		this.move(movingDirection.width, movingDirection.height);
+		
+		if (isCollidingWithWall()) {
+			//moves back once, then stops
+			move((int)-this.getLastDirection().getWidth(), (int)-this.getLastDirection().getHeight());
+			stop();
+		}else {
+			Dimension movingDirection = getDirectionToSetPoint();
+			this.move(movingDirection.width, movingDirection.height);
+		}
 	}
 	
 	public void setSetPoint(Dimension d) {
@@ -45,9 +52,9 @@ public class GhostCharacter extends GameObject{
 				d = new Dimension(1, 0);
 		}else {
 			if(this.getY() > setPoint.getHeight())
-				d = new Dimension(-1, 0);
+				d = new Dimension(0, -1);
 			else
-				d = new Dimension(1, 0);
+				d = new Dimension(0, 1);
 		}
 		return d;
 	}

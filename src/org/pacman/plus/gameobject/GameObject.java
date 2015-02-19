@@ -8,6 +8,8 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import org.pacman.plus.detectors.WallCollisionDetector;
+
 public class GameObject extends JPanel {
 
 	private Rectangle rect;
@@ -123,4 +125,10 @@ public class GameObject extends JPanel {
 		this.lastDirection = lastDirection;
 	}
 
+	public boolean isCollidingWithWall() {
+		if (WallCollisionDetector.isBoundsTouchingWall(getBounds())) {
+			return true;
+		}
+		return false;
+	}
 }
