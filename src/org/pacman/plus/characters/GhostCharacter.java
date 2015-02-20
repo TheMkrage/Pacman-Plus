@@ -30,7 +30,7 @@ public class GhostCharacter extends GameObject{
 		
 		if (isCollidingWithWall()) {
 			//moves back once, then stops
-			move((int)-movingDirection.width, (int)-movingDirection.height);
+			move((int)movingDirection.width, (int)-movingDirection.height);
 			
 		}else {
 			this.move(movingDirection.width, movingDirection.height);
