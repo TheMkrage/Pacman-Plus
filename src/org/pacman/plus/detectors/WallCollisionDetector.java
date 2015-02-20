@@ -18,7 +18,6 @@ public class WallCollisionDetector {
 		}
 		for(Wall w: walls) {
 			if(bounds.intersects(w.getBounds())) {
-				System.out.println("TRUE BABY");
 				isTouching = true;
 			}
 		}

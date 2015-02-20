@@ -6,10 +6,11 @@ import java.awt.Graphics;
 import org.pacman.plus.characters.ghosts.GhostAPI;
 import org.pacman.plus.gameobject.GameObject;
 
-public class GhostCharacter extends GameObject{
+public class GhostCharacter extends GameObject {
 
 	GhostAPI api;
 	Dimension setPoint;
+
 	public GhostAPI getApi() {
 		return api;
 	}
@@ -27,39 +28,52 @@ public class GhostCharacter extends GameObject{
 		super.paintComponent(g);
 		setPoint = api.getTarget();
 		Dimension movingDirection = getDirectionToSetPoint();
-		
-		if (isCollidingWithWall()) {
-			//moves back once, then stops
-			move((int)movingDirection.width, (int)-movingDirection.height);
-			
-		}else {
-			this.move(movingDirection.width, movingDirection.height);
-		}
+
+		this.setContiniousMovement(movingDirection.width, movingDirection.height);
 	}
-	
+
 	public void setSetPoint(Dimension d) {
 		setPoint = d;
 	}
-	
+
 	public Dimension getDirectionToSetPoint() {
 		Dimension d;
-		
-		if(Math.abs(this.getX() - setPoint.getWidth()) > Math.abs(this.getY() - setPoint.getHeight())) {
-			//we are moving on x
-			if(this.getX() > setPoint.getWidth())
+
+		if (Math.abs(this.getX() - setPoint.getWidth()) > Math.abs(this.getY()
+				- setPoint.getHeight())) {
+			// we are moving on x
+			if (this.getX() > setPoint.getWidth())
 				d = new Dimension(-1, 0);
 			else
 				d = new Dimension(1, 0);
-		}else {
-			if(this.getY() > setPoint.getHeight())
+		} else {
+			if (this.getY() > setPoint.getHeight())
 				d = new Dimension(0, -1);
 			else
 				d = new Dimension(0, 1);
 		}
+
+		// if there is anyWall present
+		if (isTouchingAnyWall()) {
+			System.out.println("I am Touching a Wall");
+			// if wall below and i need to go down
+			if (isWallBelow()) {
+				System.out.println("Wall is below");
+				System.out.println("I am above the setpoint");
+				// left or right?
+				if (this.getX() > setPoint.getWidth())
+					d = new Dimension(-1, 0);
+				else
+					d = new Dimension(1, 0);
+			}
+		}
 		return d;
 	}
-	
+
 	public double distanceBetween(Dimension one, Dimension two) {
-		return Math.sqrt((Math.pow(one.getWidth(), 2) - Math.pow(two.getWidth(), 2)) + (Math.pow(one.getHeight(), 2) - Math.pow(two.getHeight(), 2)) );
+		return Math
+				.sqrt((Math.pow(one.getWidth(), 2) - Math.pow(two.getWidth(), 2))
+						+ (Math.pow(one.getHeight(), 2) - Math.pow(
+								two.getHeight(), 2)));
 	}
 }

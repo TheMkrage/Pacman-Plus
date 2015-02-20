@@ -23,6 +23,7 @@ public class GameObject extends JPanel {
 	private boolean wallBelow = false;
 	private boolean wallRight = false;
 	private boolean wallLeft = false;
+	private boolean wallAny = false;
 
 	public GameObject(String name) {
 		rect = new Rectangle();
@@ -81,18 +82,30 @@ public class GameObject extends JPanel {
 	}
 
 	public void move(int xRate, int yRate) {
-		//if the possible new area hits a wall, don't move and update collision bools, if not, move then
+		// if the possible new area hits a wall, don't move and update collision
+		// bools, if not, move then
 		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
 				+ xRate, rect.y + yRate, rect.width, rect.height))) {
-			System.out.println("WALL IN FRONT OF ME");
 			updateCollisionVariables(xRate, yRate);
 		} else {
+			noWalls();
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
 		}
 	}
 
+	private void noWalls() {
+		wallAbove = false;
+		wallBelow = false;
+		wallRight = false;
+		wallLeft = false;
+	}
+
 	public void setContiniousMovement(int xRate, int yRate) {
+		/*if (xRate == -xRate || yRate == -yRate) {
+			return;
+		}*/
+
 		this.xRate = xRate;
 		this.yRate = yRate;
 	}
@@ -111,39 +124,39 @@ public class GameObject extends JPanel {
 			lastDirection = new Dimension(0, yRate);
 		}
 	}
-	
+
 	private void updateCollisionVariables(int xRate, int yRate) {
-		
-		if(xRate != 0) {
-			if(xRate > 0) {
+
+		if (xRate != 0) {
+			if (xRate > 0) {
 				wallRight = true;
-			}else {
+			} else {
 				wallRight = false;
 			}
-			
-			if(xRate < 0) {
+
+			if (xRate < 0) {
 				wallLeft = true;
-			}else {
+			} else {
 				wallLeft = false;
 			}
-		}else {
-			wallRight= false;
+		} else {
+			wallRight = false;
 			wallLeft = false;
 		}
-		
-		if(yRate != 0) {
-			if(yRate > 0) {
-				wallAbove = true;
-			}else {
-				wallAbove = false;
-			}
-			
-			if(yRate < 0) {
+
+		if (yRate != 0) {
+			if (yRate > 0) {
 				wallBelow = true;
-			}else {
+			} else {
 				wallBelow = false;
 			}
-		}else {
+
+			if (yRate < 0) {
+				wallAbove = true;
+			} else {
+				wallAbove = false;
+			}
+		} else {
 			wallAbove = false;
 			wallBelow = false;
 		}
@@ -202,5 +215,11 @@ public class GameObject extends JPanel {
 
 	public boolean isWallLeft() {
 		return wallLeft;
+	}
+
+	public boolean isTouchingAnyWall() {
+		if (wallAbove || wallBelow || wallRight || wallLeft)
+			return true;
+		return false;
 	}
 }
