@@ -19,6 +19,11 @@ public class GameObject extends JPanel {
 	// the last direction the pacman was going
 	private Dimension lastDirection = new Dimension(0, 0);
 
+	private boolean wallAbove = false;
+	private boolean wallBelow = false;
+	private boolean wallRight = false;
+	private boolean wallLeft = false;
+
 	public GameObject(String name) {
 		rect = new Rectangle();
 		rect.setLocation(0, 0);
@@ -76,9 +81,11 @@ public class GameObject extends JPanel {
 	}
 
 	public void move(int xRate, int yRate) {
+		//if the possible new area hits a wall, don't move and update collision bools, if not, move then
 		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
 				+ xRate, rect.y + yRate, rect.width, rect.height))) {
 			System.out.println("WALL IN FRONT OF ME");
+			updateCollisionVariables(xRate, yRate);
 		} else {
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
@@ -102,6 +109,43 @@ public class GameObject extends JPanel {
 			lastDirection = new Dimension(xRate, 0);
 		} else if (yRate != 0) {
 			lastDirection = new Dimension(0, yRate);
+		}
+	}
+	
+	private void updateCollisionVariables(int xRate, int yRate) {
+		
+		if(xRate != 0) {
+			if(xRate > 0) {
+				wallRight = true;
+			}else {
+				wallRight = false;
+			}
+			
+			if(xRate < 0) {
+				wallLeft = true;
+			}else {
+				wallLeft = false;
+			}
+		}else {
+			wallRight= false;
+			wallLeft = false;
+		}
+		
+		if(yRate != 0) {
+			if(yRate > 0) {
+				wallAbove = true;
+			}else {
+				wallAbove = false;
+			}
+			
+			if(yRate < 0) {
+				wallBelow = true;
+			}else {
+				wallBelow = false;
+			}
+		}else {
+			wallAbove = false;
+			wallBelow = false;
 		}
 	}
 
@@ -145,18 +189,18 @@ public class GameObject extends JPanel {
 	}
 
 	public boolean isWallAbove() {
-
+		return wallAbove;
 	}
 
 	public boolean isWallBelow() {
-
+		return wallBelow;
 	}
 
 	public boolean isWallRight() {
-
+		return wallRight;
 	}
 
 	public boolean isWallLeft() {
-
+		return wallLeft;
 	}
 }
