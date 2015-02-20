@@ -76,8 +76,13 @@ public class GameObject extends JPanel {
 	}
 
 	public void move(int xRate, int yRate) {
-		//setLastDirection(xRate, yRate);
-		rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width, rect.height);
+		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
+				+ xRate, rect.y + yRate, rect.width, rect.height))) {
+			System.out.println("WALL IN FRONT OF ME");
+		} else {
+			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
+					rect.height);
+		}
 	}
 
 	public void setContiniousMovement(int xRate, int yRate) {
@@ -91,6 +96,7 @@ public class GameObject extends JPanel {
 	}
 
 	private void update() {
+
 		setBounds(rect);
 		if (xRate != 0) {
 			lastDirection = new Dimension(xRate, 0);
@@ -109,6 +115,7 @@ public class GameObject extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		update();
+
 		move(xRate, yRate);
 		// if there is no image
 		if (hasImage()) {
@@ -129,10 +136,27 @@ public class GameObject extends JPanel {
 	public void setLastDirection(int x, int y) {
 		this.lastDirection = new Dimension(x, y);
 	}
+
 	public boolean isCollidingWithWall() {
 		if (WallCollisionDetector.isBoundsTouchingWall(getBounds())) {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isWallAbove() {
+
+	}
+
+	public boolean isWallBelow() {
+
+	}
+
+	public boolean isWallRight() {
+
+	}
+
+	public boolean isWallLeft() {
+
 	}
 }
