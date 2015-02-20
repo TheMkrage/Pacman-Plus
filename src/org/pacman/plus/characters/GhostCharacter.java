@@ -23,6 +23,13 @@ public class GhostCharacter extends GameObject {
 		super(x, y, name);
 		setApi(api);
 	}
+	
+	public void setContiniousMovement(int xRate, int yRate) {
+		if ((xRate == -xRate || yRate == -yRate) && xRate != 0 && yRate != 0) {
+			return;
+		}
+		super.setContiniousMovement(xRate, yRate);
+	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

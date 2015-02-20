@@ -16,6 +16,9 @@ public class GameObject extends JPanel {
 	private ImageIcon img;
 	private int xRate = 0;
 	private int yRate = 0;
+	
+	private int pastXRate = 0;
+	private int pastYRate = 0;
 	// the last direction the pacman was going
 	private Dimension lastDirection = new Dimension(0, 0);
 
@@ -89,6 +92,8 @@ public class GameObject extends JPanel {
 			updateCollisionVariables(xRate, yRate);
 		} else {
 			noWalls();
+			pastXRate = xRate;
+			pastYRate = yRate;
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
 		}
@@ -102,9 +107,7 @@ public class GameObject extends JPanel {
 	}
 
 	public void setContiniousMovement(int xRate, int yRate) {
-		/*if (xRate == -xRate || yRate == -yRate) {
-			return;
-		}*/
+		
 
 		this.xRate = xRate;
 		this.yRate = yRate;
