@@ -25,7 +25,9 @@ public class GhostCharacter extends GameObject {
 	}
 	
 	public void setContiniousMovement(int xRate, int yRate) {
-		if ((xRate == -xRate || yRate == -yRate) && xRate != 0 && yRate != 0) {
+		System.out.println("Xrate: " + xRate +" YRate: " + yRate);
+		System.out.println("Prate: " + -pastXRate + " Prate: " + -pastYRate);
+		if ((xRate == -pastXRate || yRate == -pastYRate) && xRate != 0 && yRate != 0) {
 			return;
 		}
 		super.setContiniousMovement(xRate, yRate);
@@ -62,7 +64,7 @@ public class GhostCharacter extends GameObject {
 
 		// if there is anyWall present
 		if (isTouchingAnyWall()) {
-			System.out.println("I am Touching a Wall");
+			
 			// if wall below and i need to go down
 			if (isWallBelow()) {
 				System.out.println("Wall is below");

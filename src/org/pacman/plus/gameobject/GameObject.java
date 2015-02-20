@@ -17,8 +17,8 @@ public class GameObject extends JPanel {
 	private int xRate = 0;
 	private int yRate = 0;
 	
-	private int pastXRate = 0;
-	private int pastYRate = 0;
+	protected int pastXRate = 0;
+	protected int pastYRate = 0;
 	// the last direction the pacman was going
 	private Dimension lastDirection = new Dimension(0, 0);
 
@@ -88,12 +88,12 @@ public class GameObject extends JPanel {
 		// if the possible new area hits a wall, don't move and update collision
 		// bools, if not, move then
 		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
-				+ xRate, rect.y + yRate, rect.width, rect.height))) {
+				+ xRate*5, rect.y + yRate*5, rect.width, rect.height))) {
 			updateCollisionVariables(xRate, yRate);
 		} else {
-			noWalls();
-			pastXRate = xRate;
-			pastYRate = yRate;
+			
+			//noWalls();
+			
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
 		}
@@ -107,7 +107,8 @@ public class GameObject extends JPanel {
 	}
 
 	public void setContiniousMovement(int xRate, int yRate) {
-		
+		pastXRate = xRate;
+		pastYRate = yRate;
 
 		this.xRate = xRate;
 		this.yRate = yRate;
@@ -126,6 +127,11 @@ public class GameObject extends JPanel {
 		} else if (yRate != 0) {
 			lastDirection = new Dimension(0, yRate);
 		}
+		
+		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
+				+ xRate*5, rect.y + yRate*5, rect.width, rect.height))) {
+			updateCollisionVariables(xRate, yRate);
+		} 
 	}
 
 	private void updateCollisionVariables(int xRate, int yRate) {
