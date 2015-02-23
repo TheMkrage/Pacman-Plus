@@ -23,13 +23,22 @@ public class GhostCharacter extends GameObject {
 		super(x, y, name);
 		setApi(api);
 	}
-	
+
 	public void setContiniousMovement(int xRate, int yRate) {
-		System.out.println("Xrate: " + xRate +" YRate: " + yRate);
+		System.out.println("Xrate: " + xRate + " YRate: " + yRate);
 		System.out.println("Prate: " + -pastXRate + " Prate: " + -pastYRate);
-		if ((xRate == -pastXRate || yRate == -pastYRate) && xRate != 0 && yRate != 0) {
-			return;
+		if ((xRate == -pastXRate)) {
+			System.out.println("no move");
+			if ((xRate != 0 && yRate == 0)) {
+				System.out.println("HERE WED HO");
+				return;
+			}
+		}else if(yRate == -pastYRate) {
+			if((yRate != 0 && xRate == 0)) {
+				return;
+			}
 		}
+
 		super.setContiniousMovement(xRate, yRate);
 	}
 
@@ -38,7 +47,8 @@ public class GhostCharacter extends GameObject {
 		setPoint = api.getTarget();
 		Dimension movingDirection = getDirectionToSetPoint();
 
-		this.setContiniousMovement(movingDirection.width, movingDirection.height);
+		this.setContiniousMovement(movingDirection.width,
+				movingDirection.height);
 	}
 
 	public void setSetPoint(Dimension d) {
@@ -64,7 +74,7 @@ public class GhostCharacter extends GameObject {
 
 		// if there is anyWall present
 		if (isTouchingAnyWall()) {
-			
+			System.out.println("YAYWOALL");
 			// if wall below and i need to go down
 			if (isWallBelow()) {
 				System.out.println("Wall is below");
@@ -74,8 +84,11 @@ public class GhostCharacter extends GameObject {
 					d = new Dimension(-1, 0);
 				else
 					d = new Dimension(1, 0);
+			}else {
+				System.out.println("NO BOTTOM WALL");
 			}
-		}
+		} else
+			System.out.println("NO wall");
 		return d;
 	}
 
