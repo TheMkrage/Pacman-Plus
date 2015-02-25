@@ -39,7 +39,7 @@ public class GameFrame extends JFrame {
 		Wall bottomBorder = new Wall(186, 647, 597, 15);
 		add(bottomBorder);
 
-		Wall centerMidBottom = new Wall(465, 390, 200, 20);
+		Wall centerMidBottom = new Wall(384, 531, 200, 15);
 		add(centerMidBottom);
 
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");

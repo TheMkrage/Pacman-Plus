@@ -12,7 +12,7 @@ public class MainPacmanCharacter extends PacmanCharacter {
 	private static MainPacmanCharacter instance;
 
 	private static final int STARTING_X = 464;
-	private static final int STARTING_Y = 391;
+	private static final int STARTING_Y = 491;
 	private static final String IMAGE_NAME = "alien1.png";
 
 	public static MainPacmanCharacter getInstance() {
