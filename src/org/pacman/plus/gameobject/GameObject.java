@@ -91,9 +91,9 @@ public class GameObject extends JPanel {
 				+ xRate * 5, rect.y + yRate * 5, rect.width, rect.height))) {
 			updateCollisionVariables(xRate, yRate);
 		} else {
-
-			// noWalls();
-
+			noWalls();
+			pastXRate = xRate;
+			pastYRate = yRate;
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
 		}
@@ -107,9 +107,6 @@ public class GameObject extends JPanel {
 	}
 
 	public void setContiniousMovement(int xRate, int yRate) {
-		pastXRate = xRate;
-		pastYRate = yRate;
-
 		this.xRate = xRate;
 		this.yRate = yRate;
 	}
@@ -128,7 +125,7 @@ public class GameObject extends JPanel {
 			lastDirection = new Dimension(0, yRate);
 		}
 
-		//updateCollisionVariables(xRate, yRate);
+		// updateCollisionVariables(xRate, yRate);
 
 	}
 
