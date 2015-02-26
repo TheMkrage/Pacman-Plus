@@ -39,8 +39,14 @@ public class GameFrame extends JFrame {
 		Wall bottomBorder = new Wall(186, 647, 597, 15);
 		add(bottomBorder);
 
-		Wall centerMidBottom = new Wall(384, 531, 200, 15);
+		Wall centerMidBottom = new Wall(384, 531, 200, 21);
 		add(centerMidBottom);
+		
+		Wall centerMidVertBottom = new Wall(384+ (int)((200/2) - (15/2)), 531, 15, 76);
+		add(centerMidVertBottom);
+		
+		Wall centerRightBottom = new Wall(384+ (int)((200/2) - (15/2)) + 55, 592, 100, 15);
+		add(centerRightBottom);
 
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");
 		add(Background);

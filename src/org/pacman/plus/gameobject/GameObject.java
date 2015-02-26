@@ -88,7 +88,7 @@ public class GameObject extends JPanel {
 		// if the possible new area hits a wall, don't move and update collision
 		// bools, if not, move then
 		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
-				+ xRate * 5, rect.y + yRate * 5, rect.width, rect.height))) {
+				+ xRate * 1, rect.y + yRate * 1, rect.width, rect.height))) {
 			updateCollisionVariables(xRate, yRate);
 		} else {
 			noWalls();
