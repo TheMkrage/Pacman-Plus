@@ -1,7 +1,6 @@
 package org.pacman.plus.main;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 
@@ -10,7 +9,8 @@ import org.pacman.plus.characters.ghosts.apis.SimpleAPI;
 import org.pacman.plus.characters.specific.MainPacmanCharacter;
 import org.pacman.plus.gameobject.GameObject;
 import org.pacman.plus.gameobject.course.Wall;
-import org.pacman.plus.keylisteners.BasicKeyListener;
+import org.pacman.plus.keylisteners.HorizontalKeyListener;
+import org.pacman.plus.keylisteners.VerticalKeyListener;
 
 public class GameFrame extends JFrame {
 
@@ -60,8 +60,8 @@ public class GameFrame extends JFrame {
 		GameObject Background = new GameObject(200, 0, "GameBackground.png");
 		add(Background);
 
-		addKeyListener(new BasicKeyListener());
-
+		addKeyListener(new HorizontalKeyListener());
+		addKeyListener(new VerticalKeyListener());
 		// leaves 200 - 800 for game
 
 		gameLoop();
