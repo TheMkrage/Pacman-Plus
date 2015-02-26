@@ -30,6 +30,9 @@ public class PacmanCharacter extends GameObject {
 	}
 	
 	public void setContiniousMovement(int xRate, int yRate) {
+		if((xRate != pastXRate || yRate != pastYRate) && (xRate != 0 || yRate != 0)) {
+			return;
+		}
 		super.setContiniousMovement(xRate, yRate);
 	}
 }
