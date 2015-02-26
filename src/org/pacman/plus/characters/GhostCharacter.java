@@ -98,4 +98,6 @@ public class GhostCharacter extends GameObject {
 						+ (Math.pow(one.getHeight(), 2) - Math.pow(
 								two.getHeight(), 2)));
 	}
+	
+	
 }

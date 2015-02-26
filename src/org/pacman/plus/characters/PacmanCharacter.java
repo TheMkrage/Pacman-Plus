@@ -28,4 +28,8 @@ public class PacmanCharacter extends GameObject {
 			stop();
 		}
 	}
+	
+	public void setContiniousMovement(int xRate, int yRate) {
+		super.setContiniousMovement(xRate, yRate);
+	}
 }

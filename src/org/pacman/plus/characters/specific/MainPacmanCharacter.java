@@ -34,4 +34,8 @@ public class MainPacmanCharacter extends PacmanCharacter {
 		// this.stop();
 		// }
 	}
+	
+	public void setContiniousMovement(int xRate, int yRate) {
+		super.setContiniousMovement(xRate, yRate);
+	}
 }

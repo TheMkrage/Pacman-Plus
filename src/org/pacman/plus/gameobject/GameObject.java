@@ -28,6 +28,44 @@ public class GameObject extends JPanel {
 	private boolean wallLeft = false;
 	private boolean wallAny = false;
 
+	private boolean facingLeft = false;
+	private boolean facingRight = false;
+
+	public boolean isFacingLeft() {
+		return facingLeft;
+	}
+
+	public void setFacingLeft(boolean facingLeft) {
+		this.facingLeft = facingLeft;
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
+	}
+
+	public boolean isFacingUp() {
+		return facingUp;
+	}
+
+	public void setFacingUp(boolean facingUp) {
+		this.facingUp = facingUp;
+	}
+
+	public boolean isFacingDown() {
+		return facingDown;
+	}
+
+	public void setFacingDown(boolean facingDown) {
+		this.facingDown = facingDown;
+	}
+
+	private boolean facingUp = false;
+	private boolean facingDown = false;
+
 	public GameObject(String name) {
 		rect = new Rectangle();
 		rect.setLocation(0, 0);
@@ -69,7 +107,6 @@ public class GameObject extends JPanel {
 	public int getHeight() {
 
 		return rect.height;
-
 	}
 
 	public int getX() {
@@ -96,7 +133,23 @@ public class GameObject extends JPanel {
 			pastYRate = yRate;
 			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
 					rect.height);
+			updateFacingBooleans(xRate, yRate);
 		}
+	}
+
+	private void updateFacingBooleans(int xRate, int yRate) {
+		if (xRate > 0) {
+			facingRight = true;
+		} else if (xRate < 0) {
+			facingLeft = true;
+		}
+
+		if (yRate > 0) {
+			facingDown = true;
+		} else {
+			facingUp = true;
+		}
+
 	}
 
 	private void noWalls() {
