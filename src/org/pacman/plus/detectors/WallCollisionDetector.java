@@ -24,6 +24,8 @@ public class WallCollisionDetector {
 		return isTouching;
 	}
 	
+	
+	
 	public static void addWall(Wall wall) {
 		walls.add(wall);
 	}
