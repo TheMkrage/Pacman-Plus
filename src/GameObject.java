@@ -1,5 +1,3 @@
-package org.pacman.plus.gameobject;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -8,25 +6,17 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import org.pacman.plus.detectors.WallCollisionDetector;
-
-public class GameObject extends JPanel {
+public class GameObject {
 
 	private Rectangle rect;
 	private ImageIcon img;
-	private int xRate = 0;
-	private int yRate = 0;
+	protected int xRate = 1;
+	protected int yRate = 1;
 
 	protected int pastXRate = 0;
 	protected int pastYRate = 0;
 	// the last direction the pacman was going
 	private Dimension lastDirection = new Dimension(0, 0);
-
-	private boolean wallAbove = false;
-	private boolean wallBelow = false;
-	private boolean wallRight = false;
-	private boolean wallLeft = false;
-	private boolean wallAny = false;
 
 	private boolean facingLeft = false;
 	private boolean facingRight = false;
@@ -94,7 +84,7 @@ public class GameObject extends JPanel {
 
 	public GameObject(int x, int y, int width, int height) {
 		rect = new Rectangle();
-		setLocation(x, y);
+		rect.setLocation(x, y);
 		rect.setSize(width, height);
 	}
 
@@ -116,25 +106,24 @@ public class GameObject extends JPanel {
 	public int getY() {
 		return rect.y;
 	}
+	
+	public Rectangle getRect() {
+		return rect;
+	}
+	
+	public void setX(int x) {
+		rect.setLocation(x, rect.y);
+	}
 
+	public void setY(int y) {
+		rect.setLocation(rect.x, y);
+	}
 	public ImageIcon getImage() {
 		return img;
 	}
 
 	public void move(int xRate, int yRate) {
-		// if the possible new area hits a wall, don't move and update collision
-		// bools, if not, move then
-		if (WallCollisionDetector.isBoundsTouchingWall(new Rectangle(rect.x
-				+ xRate * 1, rect.y + yRate * 1, rect.width, rect.height))) {
-			updateCollisionVariables(xRate, yRate);
-		} else {
-			noWalls();
-			pastXRate = xRate;
-			pastYRate = yRate;
-			rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width,
-					rect.height);
-			updateFacingBooleans(xRate, yRate);
-		}
+		rect.setBounds(rect.x + xRate, rect.y + yRate, rect.width, rect.height);
 	}
 
 	private void updateFacingBooleans(int xRate, int yRate) {
@@ -152,13 +141,6 @@ public class GameObject extends JPanel {
 
 	}
 
-	private void noWalls() {
-		wallAbove = false;
-		wallBelow = false;
-		wallRight = false;
-		wallLeft = false;
-	}
-
 	public void setContiniousMovement(int xRate, int yRate) {
 		this.xRate = xRate;
 		this.yRate = yRate;
@@ -169,74 +151,11 @@ public class GameObject extends JPanel {
 		setContiniousMovement(0, 0);
 	}
 
-	private void update() {
-
-		setBounds(rect);
-		if (xRate != 0) {
-			lastDirection = new Dimension(xRate, 0);
-		} else if (yRate != 0) {
-			lastDirection = new Dimension(0, yRate);
-		}
-
-		// updateCollisionVariables(xRate, yRate);
-
-	}
-
-	private void updateCollisionVariables(int xRate, int yRate) {
-
-		if (xRate != 0) {
-			if (xRate > 0) {
-				wallRight = true;
-			} else {
-				wallRight = false;
-			}
-
-			if (xRate < 0) {
-				wallLeft = true;
-			} else {
-				wallLeft = false;
-			}
-		} else {
-			wallRight = false;
-			wallLeft = false;
-		}
-
-		if (yRate != 0) {
-			if (yRate > 0) {
-				wallBelow = true;
-			} else {
-				wallBelow = false;
-			}
-
-			if (yRate < 0) {
-				wallAbove = true;
-			} else {
-				wallAbove = false;
-			}
-		} else {
-			wallAbove = false;
-			wallBelow = false;
-		}
-	}
-
 	public boolean hasImage() {
 		if (img != null) {
 			return true;
 		} else
 			return false;
-	}
-
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		update();
-
-		move(xRate, yRate);
-		// if there is no image
-		if (hasImage()) {
-			g.drawImage(img.getImage(), 0, 0, null);
-		} else { // draw the rect if no image
-			g.drawRect(0, 0, rect.width - 1, rect.height - 1);
-		}
 	}
 
 	public Dimension getLastDirection() {
@@ -251,32 +170,4 @@ public class GameObject extends JPanel {
 		this.lastDirection = new Dimension(x, y);
 	}
 
-	public boolean isCollidingWithWall() {
-		if (WallCollisionDetector.isBoundsTouchingWall(getBounds())) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isWallAbove() {
-		return wallAbove;
-	}
-
-	public boolean isWallBelow() {
-		return wallBelow;
-	}
-
-	public boolean isWallRight() {
-		return wallRight;
-	}
-
-	public boolean isWallLeft() {
-		return wallLeft;
-	}
-
-	public boolean isTouchingAnyWall() {
-		if (wallAbove || wallBelow || wallRight || wallLeft)
-			return true;
-		return false;
-	}
 }
