@@ -17,6 +17,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main {
 
+	private static JFrame frame = new JFrame();
+	private static AnimatedPanel panel = new AnimatedPanel();
+	private static MenuPanel menu = MenuPanel.getInstance();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -30,23 +33,38 @@ public class Main {
 						| UnsupportedLookAndFeelException ex) {
 				}
 
-
-				AnimatedPanel panel = new AnimatedPanel();
-
-				
-				JFrame frame = new JFrame();
-				
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setContentPane(panel);
+				frame.setContentPane(menu);
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
-
-				panel.animate();
 
 			}
 		});
 	}
 
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	public static AnimatedPanel getPanel() {
+		return panel;
+	}
+
+	public static void changeToMenu() {
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(panel);
+		
+		panel.repaint();
+		panel.revalidate();
+		
+		frame.repaint();
+		frame.revalidate();
+		
+		panel.animate();
+		
+		panel.requestFocusInWindow();
+
+	}
 
 }

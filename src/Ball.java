@@ -3,6 +3,8 @@ import java.util.Random;
 public class Ball extends GameObject implements Runnable{
 
 	private static Ball instance;
+	private int score1 = 0;
+	private int score2 = 0;
 
 	public static Ball getInstance() {
 		if (instance == null) {
@@ -34,6 +36,14 @@ public class Ball extends GameObject implements Runnable{
 		}
 		return xRate;
 	}
+	
+	public String get1Score() {
+		return String.valueOf(score1);
+	}
+	
+	public String get2Score() {
+		return String.valueOf(score2);
+	}
 
 	@Override
 	public void run() {
@@ -48,6 +58,11 @@ public class Ball extends GameObject implements Runnable{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			if (this.getX() < AnimatedPanel.getPaddle1().getX()) {
+				score1++;
+			}else if (this.getX() > AnimatedPanel.getPaddle2().getX()) {
+				score2++;
 			}
 		}
 		
