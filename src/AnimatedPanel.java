@@ -17,17 +17,29 @@ public class AnimatedPanel extends JPanel {
 	private float progress = 0.0f; // a number between 0.0 and 1.0
 	private int player1Score = 0;
 	private int player2Score = 0;
+	
+	private Thread ballThread;
+	private Thread p1Thread;
+	private Thread p2Thread;
+	
+	private Timer timer;
 
 	public AnimatedPanel() {
 		setPreferredSize(new Dimension(600, 600));
 		paddle1 = new Paddle(25, 250, "rectangle100.png");
 		paddle2 = new Paddle(550, 250, "rectangle100.png");
+		
+		ballThread = (new Thread(Ball.getInstance()));
+		p1Thread = (new Thread(paddle1));
+		p2Thread = (new Thread(paddle2));
 	}
-
-	public static void setPlayerOneScore(int score) {
-
+	@SuppressWarnings("deprecation")
+	public void stop() {
+		timer.stop();
+		//this.ballThread.stop();
+		//this.p1Thread.stop();
+		//this.p2Thread.stop();
 	}
-
 	static Paddle paddle1;
 	static Paddle paddle2;
 
@@ -61,28 +73,18 @@ public class AnimatedPanel extends JPanel {
 				KeyStroke.getKeyStroke("released UP released DOWN"), "Stop2");
 		this.getActionMap().put("Stop2", new MovePaddleAction(2, 0));
 
-		(new Thread(Ball.getInstance())).start();
-		(new Thread(paddle1)).start();
-		(new Thread(paddle2)).start();
+		
+		ballThread.start();
+		p1Thread.start();
+		p2Thread.start();
 
 		int framesPerSecond = 1000;
 		int delay = 1000 / framesPerSecond;
-		final long start = System.currentTimeMillis();
-		final Timer timer = new Timer(delay, null);
+		timer = new Timer(delay, null);
 
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				final long now = System.currentTimeMillis();
-				final long elapsed = now - start;
-
-				int width = getWidth();
-				int height = getHeight();
-				int oldWidth = (int) (width * progress);
-
-				progress = (float) elapsed / 1000;
-				int newWidth = (int) (width * progress);
-
 				repaint();
 
 			}
@@ -100,8 +102,8 @@ public class AnimatedPanel extends JPanel {
 				paddle1.getY(), null);
 		g2d.drawImage(paddle2.getImage().getImage(), paddle2.getX(),
 				paddle2.getY(), null);
-		g2d.drawString(Ball.getInstance().get1Score(), 280, 20);
-		g2d.drawString(Ball.getInstance().get2Score(), 320, 20);
+		g2d.drawString(Ball.getInstance().get1Score(), 320, 20);
+		g2d.drawString(Ball.getInstance().get2Score(), 280, 20);
 		// System.out.println(paddle2.getY());
 	}
 }

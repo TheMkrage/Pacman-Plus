@@ -5,6 +5,8 @@ public class Ball extends GameObject implements Runnable{
 	private static Ball instance;
 	private int score1 = 0;
 	private int score2 = 0;
+	
+	private boolean lastRunScored = false;
 
 	public static Ball getInstance() {
 		if (instance == null) {
@@ -14,25 +16,23 @@ public class Ball extends GameObject implements Runnable{
 	}
 
 	private Ball() {
-		super(260, 260, "PlainBall.png");
+		super(260, 260, "ball.png");
 	}
 
 	private int curYRate() {
-		if (this.getY() < 0) {
-			return (new Random()).nextInt(5 + 10);
-		} else if (this.getY() + 40 > 600) {
-			return -(new Random()).nextInt(5 + 10);
-		} else if (AnimatedPanel.getPaddle1().getRect().intersects(this.getRect()) || AnimatedPanel.getPaddle2().getRect().intersects(this.getRect())) {
-			return -yRate;
+		if (this.getY() < 0 || AnimatedPanel.getPaddle1().getRect().intersects(this.getRect())) {
+			return (new Random()).nextInt(3) + 3;
+		} else if (this.getY() + 40 > 600 || AnimatedPanel.getPaddle2().getRect().intersects(this.getRect()) ){
+			return -(new Random()).nextInt(3) - 3;
 		}
 		return yRate;
 	}
 
 	private int curXRate() {
 		if  ((AnimatedPanel.getPaddle1().getRect().intersects(this.getRect())) || (this.getX() < 0)) {
-			return (new Random()).nextInt(5 + 10);
+			return (new Random()).nextInt(8) + 2;
 		} else if ((this.getX() + 40 > 600) || (AnimatedPanel.getPaddle2().getRect().intersects(this.getRect())) ) {
-			return -(new Random()).nextInt(5 + 10);
+			return -(new Random()).nextInt(8)- 2 ;
 		}
 		return xRate;
 	}
@@ -59,10 +59,22 @@ public class Ball extends GameObject implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (this.getX() < AnimatedPanel.getPaddle1().getX()) {
+			if (this.getX() < AnimatedPanel.getPaddle1().getX() && !lastRunScored) {
 				score1++;
-			}else if (this.getX() > AnimatedPanel.getPaddle2().getX()) {
+				lastRunScored = true;
+			}else if (this.getX() > AnimatedPanel.getPaddle2().getX() && !lastRunScored) {
 				score2++;
+				System.out.println("SCORE");
+				lastRunScored = true;
+			}else if (this.getX() < AnimatedPanel.getPaddle2().getX() && this.getX() > AnimatedPanel.getPaddle1().getX()) {
+				System.out.println("HOWDY");
+				lastRunScored = false;
+			}
+			System.out.println( MenuPanel.getInstance().getGoTo());
+			if (score1 == MenuPanel.getInstance().getGoTo()) {
+				Main.changeToMenu();
+			}else if (score2 == MenuPanel.getInstance().getGoTo()) {
+				Main.changeToMenu();
 			}
 		}
 		
